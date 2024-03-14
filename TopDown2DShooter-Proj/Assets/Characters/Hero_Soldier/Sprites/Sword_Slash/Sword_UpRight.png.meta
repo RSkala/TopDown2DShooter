@@ -113,7 +113,7 @@ TextureImporter:
       name: Sword_UpRight_0
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 0
         width: 64
         height: 64
@@ -134,7 +134,7 @@ TextureImporter:
       name: Sword_UpRight_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 0
         width: 64
         height: 64
@@ -155,7 +155,7 @@ TextureImporter:
       name: Sword_UpRight_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 0
         width: 64
         height: 64
@@ -176,7 +176,7 @@ TextureImporter:
       name: Sword_UpRight_3
       rect:
         serializedVersion: 2
-        x: 256
+        x: 192
         y: 0
         width: 64
         height: 64
@@ -189,6 +189,27 @@ TextureImporter:
       bones: []
       spriteID: 2ada968fd8f484831bfe4a7849bd67e3
       internalID: -1854610010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sword_UpRight_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5099b766b30f245d3a2ae6039ba726c3
+      internalID: -1967187484
       vertices: []
       indices: 
       edges: []
@@ -208,6 +229,7 @@ TextureImporter:
       Sword_UpRight_1: 695561779
       Sword_UpRight_2: 1113108714
       Sword_UpRight_3: -1854610010
+      Sword_UpRight_4: -1967187484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
