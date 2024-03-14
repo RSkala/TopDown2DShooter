@@ -3,10 +3,19 @@ using UnityEngine.InputSystem;
 
 public class CharacterHeroSoldier : CharacterBase
 {
+    [Tooltip("How long the player stays in its dash state")]
+    [SerializeField] float _dashTime;
+
+    [Tooltip("How quickly the player moves while dashing")]
+    [SerializeField] float _dashSpeed;
+
     Vector2 _movementInput = Vector2.zero;
     Vector2 _lookInput = Vector2.zero;
+    Vector2 _dashInput = Vector2.zero;
     Vector2 _mouseLookPosition = Vector2.zero;
     bool _useMouseLook = false;
+    bool _isDashing = false;
+    float _dashTimeElapsed;
 
     protected override void Start()
     {
@@ -15,6 +24,21 @@ public class CharacterHeroSoldier : CharacterBase
 
     void FixedUpdate()
     {
+        // Update Dash
+        if(_isDashing)
+        {
+            _dashTimeElapsed += Time.fixedDeltaTime;
+            if(_dashTimeElapsed >= _dashTime)
+            {
+                _isDashing = false;   
+            }
+
+            Vector2 movementDirection = _dashInput;
+            Vector2 newPosition = _rigidbody2D.position + movementDirection * _dashSpeed * Time.fixedDeltaTime;
+            _rigidbody2D.MovePosition(newPosition);
+            return;
+        }
+
         // Update Movement
         if(!_movementInput.Equals(Vector2.zero))
         {
@@ -66,5 +90,19 @@ public class CharacterHeroSoldier : CharacterBase
         Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
         _mouseLookPosition = mouseWorldPoint;
         _useMouseLook = true;
+    }
+
+    void OnDash(InputValue inputValue)
+    {
+        Debug.Log("OnDash");
+        // Only allow dashing if the player has some movement input
+        if(!_movementInput.Equals(Vector2.zero))
+        {
+            Debug.Log("start dashing...");
+            // Use the player's current movement input to use for the dash input
+            _dashInput = _movementInput;
+            _isDashing = true;
+            _dashTimeElapsed = 0.0f;
+        }
     }
 }

@@ -499,6 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _moveSpeed: 1
+  _dashTime: 0.125
+  _dashSpeed: 6
 --- !u!61 &1278823345
 BoxCollider2D:
   m_ObjectHideFlags: 0
