@@ -9,6 +9,8 @@ public class CharacterHeroSoldier : CharacterBase
     [Tooltip("How quickly the player moves while dashing")]
     [SerializeField] float _dashSpeed;
 
+    [SerializeField] Transform _firePointPistol;
+
     Vector2 _movementInput = Vector2.zero;
     Vector2 _lookInput = Vector2.zero;
     Vector2 _dashInput = Vector2.zero;
@@ -102,5 +104,10 @@ public class CharacterHeroSoldier : CharacterBase
             _isDashing = true;
             _dashTimeElapsed = 0.0f;
         }
+    }
+
+    void OnFire(InputValue inputValue)
+    {
+        ProjectileController.Instance.SpawnBullet(_firePointPistol.position, _rigidbody2D.transform.rotation);
     }
 }
