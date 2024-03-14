@@ -109,6 +109,12 @@ public class CharacterHeroSoldier : CharacterBase
 
     void OnFire(InputValue inputValue)
     {
+        // Do not allow the player to fire while dashing
+        if(_isDashing)
+        {
+            return;
+        }
+        
         ProjectileController.Instance.SpawnBullet(_firePointPistol.position, _rigidbody2D.transform.rotation);
         AudioManager.Instance.PlaySound(AudioManager.SFX.PistolFire);
     }
