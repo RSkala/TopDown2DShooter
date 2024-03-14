@@ -59,14 +59,11 @@ public class CharacterHeroSoldier : CharacterBase
 
     void OnMouseMove(InputValue inputValue)
     {
-        // Using this:
-        // https://gamedevbeginner.com/how-to-convert-the-mouse-position-to-world-space-in-unity-2d-3d/#:~:text=In%20Unity%2C%20getting%20the%20mouse,Simple.
         Vector3 mousePosition = inputValue.Get<Vector2>();
+
+        // The 2D Orthographic camera's nearClipPlane needs to be used for the z, otherwise the "z" (forward") will be outside the bounds of our game view
         mousePosition.z = Camera.main.nearClipPlane;
-
-        //Vector3 mouseViewportPoint = Camera.main.ScreenToViewportPoint(mousePosition);
         Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
-
         _mouseLookPosition = mouseWorldPoint;
         _useMouseLook = true;
     }
