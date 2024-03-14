@@ -94,11 +94,9 @@ public class CharacterHeroSoldier : CharacterBase
 
     void OnDash(InputValue inputValue)
     {
-        Debug.Log("OnDash");
         // Only allow dashing if the player has some movement input
         if(!_movementInput.Equals(Vector2.zero))
         {
-            Debug.Log("start dashing...");
             // Use the player's current movement input to use for the dash input
             _dashInput = _movementInput;
             _isDashing = true;
