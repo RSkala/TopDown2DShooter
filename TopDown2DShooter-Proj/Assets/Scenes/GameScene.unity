@@ -835,6 +835,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8ed3e01075af84583af47f43800e13a0, type: 3}
   - {fileID: 8300000, guid: 572a7e92740064434a283a9ff047c1f7, type: 3}
   - {fileID: 8300000, guid: 6bdc20cc544094384b5e67dba9be9086, type: 3}
+  _swordSlashClips:
+  - {fileID: 8300000, guid: b6bb7d18f7a3448528430075d853b995, type: 3}
+  - {fileID: 8300000, guid: 6f868adf3ba2848a691ccf426da37c63, type: 3}
+  - {fileID: 8300000, guid: ddb9d1e0e33994e3086736f427c26018, type: 3}
 --- !u!1 &1847457672
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,16 +4,19 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip[] _pistolFireClips;
     [SerializeField] AudioClip[] _dashSoundClips;
+    [SerializeField] AudioClip[] _swordSlashClips;
 
     public static AudioManager Instance { get; private set; }
 
     AudioSource _pistolFireSource;
     AudioSource _dashSoundSource;
+    AudioSource _swordSlashSource;
 
     public enum SFX
     {
         PistolFire,
-        Dash
+        Dash,
+        SwordSlash
     }
 
     void Awake()
@@ -31,6 +34,7 @@ public class AudioManager : MonoBehaviour
         // Create the AudioSource objects and add as chidren
         CreateAudioSourceChild(out _pistolFireSource, "PistolFireSource");
         CreateAudioSourceChild(out _dashSoundSource, "DashSoundSource");
+        CreateAudioSourceChild(out _swordSlashSource, "SwordSlashSource");
     }
 
     void CreateAudioSourceChild(out AudioSource audioSource, string audioSourceName)
@@ -65,6 +69,7 @@ public class AudioManager : MonoBehaviour
         {
             case SFX.PistolFire: PlayRandomSoundFromClips(_pistolFireSource, _pistolFireClips); break;
             case SFX.Dash: PlayRandomSoundFromClips(_dashSoundSource, _dashSoundClips); break;
+            case SFX.SwordSlash: PlayRandomSoundFromClips(_swordSlashSource, _swordSlashClips); break;
             default: break;
         }
     }

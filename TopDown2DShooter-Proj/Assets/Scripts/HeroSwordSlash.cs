@@ -29,7 +29,7 @@ public class HeroSwordSlash : MonoBehaviour
 
     void SwordSlashAnimStart()
     {
-        Debug.Log("HeroSwordSlash.SwordSlashAnimStart");
+        AudioManager.Instance.PlaySound(AudioManager.SFX.SwordSlash);
     }
 
     void SwordSlashAnimEnd()
