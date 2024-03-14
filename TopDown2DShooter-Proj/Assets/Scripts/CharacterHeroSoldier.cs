@@ -103,11 +103,13 @@ public class CharacterHeroSoldier : CharacterBase
             _dashInput = _movementInput;
             _isDashing = true;
             _dashTimeElapsed = 0.0f;
+            AudioManager.Instance.PlaySound(AudioManager.SFX.Dash);
         }
     }
 
     void OnFire(InputValue inputValue)
     {
         ProjectileController.Instance.SpawnBullet(_firePointPistol.position, _rigidbody2D.transform.rotation);
+        AudioManager.Instance.PlaySound(AudioManager.SFX.PistolFire);
     }
 }
