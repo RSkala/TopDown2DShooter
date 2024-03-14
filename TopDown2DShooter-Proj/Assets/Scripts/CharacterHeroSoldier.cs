@@ -9,19 +9,27 @@ public class CharacterHeroSoldier : CharacterBase
     [Tooltip("How quickly the player moves while dashing")]
     [SerializeField] float _dashSpeed;
 
+    [Tooltip("Position where the Pistol bullet will be fired from (i.e. the pistol barrel)")]
     [SerializeField] Transform _firePointPistol;
+
+    [Tooltip("The child GameObject containing the Hero Sword Slash object")]
+    [SerializeField] HeroSwordSlash _heroSwordSlash;
 
     Vector2 _movementInput = Vector2.zero;
     Vector2 _lookInput = Vector2.zero;
     Vector2 _dashInput = Vector2.zero;
     Vector2 _mouseLookPosition = Vector2.zero;
+
     bool _useMouseLook = false;
     bool _isDashing = false;
     float _dashTimeElapsed;
+    bool _isSwingingSword = false;
 
     protected override void Start()
     {
         base.Start();
+        _heroSwordSlash.gameObject.SetActive(false);
+        _heroSwordSlash.eventSwordSlashEnd.AddListener(OnSwordSlashEnd);
     }
 
     void FixedUpdate()
@@ -114,8 +122,38 @@ public class CharacterHeroSoldier : CharacterBase
         {
             return;
         }
-        
+
+        // Do not allow the player to fire while swinging the sword
+        if(_isSwingingSword)
+        {
+            return;
+        }
+
         ProjectileController.Instance.SpawnBullet(_firePointPistol.position, _rigidbody2D.transform.rotation);
         AudioManager.Instance.PlaySound(AudioManager.SFX.PistolFire);
+    }
+
+    void OnFire2(InputValue inputValue)
+    {
+        // Do not allow the player to swing the sword while dashing
+        if(_isDashing)
+        {
+            return;
+        }
+
+        // The player should not be able to swing the sword while already swinging the sword
+        if(_isSwingingSword)
+        {
+            return;
+        }
+
+        // Unhide the Sword Slash gameobject
+        _heroSwordSlash.gameObject.SetActive(true);
+        _isSwingingSword = true;
+    }
+
+    void OnSwordSlashEnd()
+    {
+        _isSwingingSword = false;
     }
 }
