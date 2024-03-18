@@ -15,6 +15,20 @@ public class CharacterHeroSoldier : CharacterBase
     [Tooltip("The child GameObject containing the Hero Sword Slash object")]
     [SerializeField] HeroSwordSlash _heroSwordSlash;
 
+    [Header("Spread Gun")]
+    [SerializeField] SpreadGunSize _spreadGunSize = SpreadGunSize.SingleBullet;
+    [SerializeField] [Range(0.1f, 90.0f)] float _spreadGunAngle = 10.0f;
+
+    enum SpreadGunSize
+    {
+        SingleBullet = 1,
+        ThreeBullets = 3,
+        FiveBullets = 5,
+        SevenBullets = 7,
+        NineBullets = 9,
+        ElevenBullets = 11
+    }
+
     Vector2 _movementInput = Vector2.zero;
     Vector2 _lookInput = Vector2.zero;
     Vector2 _dashInput = Vector2.zero;
@@ -129,7 +143,26 @@ public class CharacterHeroSoldier : CharacterBase
             return;
         }
 
+        // Always fire the first bullet straight in front of the barrel
         ProjectileController.Instance.SpawnBullet(_firePointPistol.position, _rigidbody2D.transform.rotation);
+
+        int totalBulletsSpawned = 1;
+        float angleMultiple = 1.0f;
+
+        // In each loop iteration, spawn 2 bullets in both the left and right rotation directions
+        while(totalBulletsSpawned < (int)_spreadGunSize)
+        {
+            Quaternion leftRotation = _rigidbody2D.transform.rotation * Quaternion.Euler(Vector3.forward * _spreadGunAngle * angleMultiple);
+            Quaternion rightRotation = _rigidbody2D.transform.rotation * Quaternion.Euler(Vector3.forward * -_spreadGunAngle * angleMultiple);
+
+            ProjectileController.Instance.SpawnBullet(_firePointPistol.position, leftRotation);
+            ProjectileController.Instance.SpawnBullet(_firePointPistol.position, rightRotation);
+
+            angleMultiple += 1.0f;
+            totalBulletsSpawned += 2;
+        }
+
+        // Play only a single fire sound regardless of how many bullets were spawned
         AudioManager.Instance.PlaySound(AudioManager.SFX.PistolFire);
     }
 
