@@ -19,6 +19,10 @@ public class CharacterHeroSoldier : CharacterBase
     [SerializeField] SpreadGunSize _spreadGunSize = SpreadGunSize.SingleBullet;
     [SerializeField] [Range(0.1f, 90.0f)] float _spreadGunAngle = 10.0f;
 
+    [Header("Satellite Weapon")]
+    [SerializeField] GameObject _satelliteWeapon;
+    [SerializeField] bool _enableSatelliteWeapon = false;
+
     enum SpreadGunSize
     {
         SingleBullet = 1,
@@ -44,6 +48,7 @@ public class CharacterHeroSoldier : CharacterBase
         base.Start();
         _heroSwordSlash.gameObject.SetActive(false);
         _heroSwordSlash.eventSwordSlashEnd.AddListener(OnSwordSlashEnd);
+        _satelliteWeapon.SetActive(_enableSatelliteWeapon);
     }
 
     void FixedUpdate()
@@ -164,6 +169,13 @@ public class CharacterHeroSoldier : CharacterBase
 
         // Play only a single fire sound regardless of how many bullets were spawned
         AudioManager.Instance.PlaySound(AudioManager.SFX.PistolFire);
+
+        // Fire a bullet from the satellite weapon, if enabled
+        if(_satelliteWeapon.activeSelf)
+        {
+            Rigidbody2D satelliteWeaponRigidBody = _satelliteWeapon.GetComponent<Rigidbody2D>();
+            ProjectileController.Instance.SpawnBullet(satelliteWeaponRigidBody.position, _rigidbody2D.transform.rotation);
+        }
     }
 
     void OnFire2(InputValue inputValue)

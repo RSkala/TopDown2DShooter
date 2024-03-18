@@ -3374,6 +3374,8 @@ MonoBehaviour:
   _heroSwordSlash: {fileID: 304336022}
   _spreadGunSize: 1
   _spreadGunAngle: 10
+  _satelliteWeapon: {fileID: 1393453273}
+  _enableSatelliteWeapon: 1
 --- !u!61 &1278823345
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3668,7 +3670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 360
-  _distanceFromOwner: 0.25
+  _distanceFromOwner: 0.375
   _rotationDirection: 0
   _owner: {fileID: 1278823340}
 --- !u!1 &1847457672
@@ -3712,5 +3714,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1278823342}
-  - {fileID: 1109017067}
   - {fileID: 1393453275}
+  - {fileID: 1109017067}
