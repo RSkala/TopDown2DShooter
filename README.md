@@ -8,6 +8,6 @@ I personally find having the Unity project in a sub-directory (as opposed to hav
 I've always loved top-down / twin-stick shooters since playing Smash TV in the arcades, so my goal is create something simple and fun.
 
 <b>Update:</b></br>
-I've re-implemented some of the things I've discovered while working and experiementing on this project in my more current project:</br>
+I've re-implemented some of the things I've discovered while working and experimenting on this project in my more current project:</br>
 <a href="https://github.com/RSkala/TwinStickShooter01">Twin Stick Shooter</a>
 
